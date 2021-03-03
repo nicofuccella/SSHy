@@ -42,8 +42,6 @@ SSHyClient.auth.prototype = {
     // Called on successful or partially successful SSH connection authentications
     auth_success: function(success) {
         if (success) {
-            // Change the window title
-            document.title = this.termUsername + '@' + this.hostname;
 			// Purge the username and password
 			this.termUsername = '';
 			this.termPassword = undefined;
@@ -91,14 +89,14 @@ SSHyClient.auth.prototype = {
         // pixel data, which is overwritten by the above height and width
         m.add_int(0);
         m.add_int(0);
-        
+
         if (term) {
             // Don't sent any special terminal modes
             m.add_string('');
         }
 
         this.parceler.send(m);
-       
+
         if (term) {
             // invokes the shell session right after sending the packet
             this.invoke_shell();
